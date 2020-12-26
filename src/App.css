@@ -1,0 +1,46 @@
+body {
+    background-color: rgb(245, 213, 175);
+}
+
+.post-card {    
+    border-radius: 16px;
+    border: 1px solid gray;
+    background-color: burlywood;
+    padding: 0px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.post-card__content {
+    text-align: justify;
+    padding: 0 16px;
+    font-size: 13.5px;
+}
+
+.about-wrapper {
+    display: flex;    
+}
+
+.about-image {
+    border-radius: 16px;
+}
+
+.about-text {
+    display: flex;
+    padding: 0;    
+    text-align: justify;
+    font-size: 13.5px;
+    margin: 0 16px;
+    align-items: center;
+}
+
+.post-href {
+    text-decoration: none;
+    color: black;
+}
+
+.post-comment {
+    font-size: 12.5px;
+    text-align: left;
+    margin-left: 16px;
+}
