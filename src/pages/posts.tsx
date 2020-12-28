@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useParams, useHistory, Link } from "react-router-dom";
-import { getPosts} from '../App'
+import axios from 'axios';
 import { PostType } from '../store/posts/types';
 import { CommentType } from '../store/comments/types';
 import '../App.css';
@@ -8,7 +8,11 @@ import '../App.css';
 interface PostState {
     post?: PostType;
     loaded: boolean;
-    preComment: string;    
+    preComment: string;
+}
+
+const getPosts = (): Promise<PostType[]> => {
+    return axios.get("https://jsonplaceholder.typicode.com/posts").then(({ data }) => data)
 }
 
 const Posts = (props: {
@@ -18,12 +22,12 @@ const Posts = (props: {
 }) => {
     const history = useHistory();
     const id = parseInt(useParams<{ id: string }>().id);
-    
-    
+
+
     const [state, setState] = useState<PostState>({
         loaded: props.posts.length > 0,
         post: props.posts.length > 0 ? props.posts.find(x => x.id === id) : undefined,
-        preComment: ''        
+        preComment: ''
     });
 
     const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => setState({
@@ -36,7 +40,7 @@ const Posts = (props: {
 
         setState({
             ...state,
-            preComment: ''           
+            preComment: ''
         });
     }
 
@@ -55,7 +59,7 @@ const Posts = (props: {
 
     if (!state.loaded) {
         loadPosts();
-    }    
+    }
 
     if (state.loaded && !state.post) {
         history.push('/404');

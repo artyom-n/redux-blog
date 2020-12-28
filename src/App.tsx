@@ -1,13 +1,12 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import './App.css';
 import Home from './pages/home'
 import About from './pages/about'
 import Posts from './pages/posts'
 import NotFound from './pages/404'
-import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from './store/';
-import { PostsState, PostType, SET_POSTS } from './store/posts/types';
+import { PostsState } from './store/posts/types';
 import { CommentsState } from './store/comments/types';
 import { setComment } from './store/comments/actions';
 
@@ -17,10 +16,7 @@ import {
   Route,
   Link  
 } from "react-router-dom";
-
-export const getPosts = (): Promise<PostType[]> => {
-  return axios.get("https://jsonplaceholder.typicode.com/posts").then(({ data }) => data)
-}
+import { setPost } from './store/posts/actions';
 
 const App = () => {  
 
@@ -30,12 +26,14 @@ const App = () => {
 
   const dispatch = useDispatch()
 
-  useEffect(() => {  
-    if (postsState.posts.length === 0) {
-      getPosts().then(response => dispatch({ type: SET_POSTS, posts: response }))
-    }
-  }, [postsState.posts]);  
+  const initFetch = useCallback(() => {
+    dispatch(setPost());
+  }, [dispatch]);
 
+  useEffect(() => {
+    initFetch();
+  }, [initFetch]); 
+  
   const onAddComment = (postId: number, comment: string) => {
     const post = commentsState.comments.find(x => x.postId === postId)
     

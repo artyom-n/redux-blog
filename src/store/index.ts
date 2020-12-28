@@ -4,6 +4,7 @@ import { commentsReducer } from './comments/reducer';
 import { PostsState } from './posts/types';
 import { CommentsState } from './comments/types';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import ReduxThunk from 'redux-thunk';
 
 const reducer = combineReducers<RootState>({
   postsState: postsReducer,
@@ -16,5 +17,5 @@ export type RootState = {
 };
 
 export const store = createStore(reducer, composeWithDevTools(
-  applyMiddleware(),
+  applyMiddleware(ReduxThunk),
 ));
