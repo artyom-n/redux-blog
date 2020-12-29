@@ -1,12 +1,22 @@
 import React from 'react'
 import { Form, Field } from 'react-final-form'
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../store';
+import { validateUser } from '../store/login/actions';
 
 
 
 const Login = () => {
+  const userState = useSelector<RootState>(state => state.userState)
+  console.log(userState)
+
+  const dispatch = useDispatch()
+
+
   return (
     <Form
       onSubmit={value => {
+        // dispatch(validateUser({value.firstName, value.secondName, value.password}));
         console.log(value);
       }}
     >

@@ -5,16 +5,22 @@ import { PostsState } from './posts/types';
 import { CommentsState } from './comments/types';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import ReduxThunk from 'redux-thunk';
+import { loginReducer } from './login/reducer';
+import { UserState } from './login/types';
+
+export type RootState = {
+  postsState: PostsState,
+  commentsState: CommentsState,
+  userState: UserState
+};
 
 const reducer = combineReducers<RootState>({
   postsState: postsReducer,
   commentsState: commentsReducer,
+  userState: loginReducer,
 });
 
-export type RootState = {
-  postsState: PostsState;
-  commentsState: CommentsState;
-};
+
 
 export const store = createStore(reducer, composeWithDevTools(
   applyMiddleware(ReduxThunk),
