@@ -17,6 +17,7 @@ import {
   Link  
 } from "react-router-dom";
 import { setPost } from './store/posts/actions';
+import Login from './pages/login';
 
 const App = () => {  
 
@@ -57,12 +58,17 @@ const App = () => {
         <Link to="/">Home</Link>
         &nbsp; &nbsp; &nbsp;
         <Link to="/about">About</Link>
+        &nbsp; &nbsp; &nbsp;
+        <Link to="/login">Login</Link>
         <Switch>
           <Route exact path="/">
             <Home posts={postsState.posts} />
           </Route>
           <Route exact path="/about">
             <About />
+          </Route>
+          <Route path="/login">
+            <Login />
           </Route>
           <Route path={"/posts/:id"}>
             <Posts posts={postsState.posts} comments={commentsState.comments} onAddComment={onAddComment} />
