@@ -14,12 +14,12 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link  
+  Link
 } from "react-router-dom";
 import { setPost } from './store/posts/actions';
 import Login from './pages/login';
 
-const App = () => {  
+const App = () => {
 
   const postsState = useSelector<RootState, PostsState>(state => state.postsState)
 
@@ -33,11 +33,11 @@ const App = () => {
 
   useEffect(() => {
     initFetch();
-  }, [initFetch]); 
-  
+  }, [initFetch]);
+
   const onAddComment = (postId: number, comment: string) => {
     const post = commentsState.comments.find(x => x.postId === postId)
-    
+
     if (post) {
       post.comments = [comment, ...post.comments]
     } else {
@@ -52,7 +52,11 @@ const App = () => {
   };
 
   return (
-    <><br />
+    <>
+      <section className="logo">
+        <img src="https://www.krenerbookkeeping.com/wp-content/uploads/2017/05/blogger-logo-icon-png-22.png" alt="logo" width="50"/>
+      </section>
+      <br />
       <Router>
         &nbsp; &nbsp; &nbsp; &nbsp;
         <Link to="/">Home</Link>
@@ -77,7 +81,8 @@ const App = () => {
             <NotFound />
           </Route>
         </Switch>
-      </Router></>
+      </Router>
+    </>
   );
 }
 export default App;

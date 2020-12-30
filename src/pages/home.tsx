@@ -31,6 +31,14 @@ const Home = (props: { posts: PostType[] }) => {
                 <div className="row center-xs">
                     <button onClick={() => setTag1("1")}>sport</button>
                     <button onClick={() => setTag1("2")}>music</button>
+                    <button onClick={() => setTag1("3")}>design</button>
+                    <button onClick={() => setTag1("4")}>science</button>
+                    <button onClick={() => setTag1("5")}>culture</button>
+                    <button onClick={() => setTag1("6")}>history</button>
+                    <button onClick={() => setTag1("7")}>coding</button>
+                    <button onClick={() => setTag1("8")}>auto</button>
+                    <button onClick={() => setTag1("9")}>news</button>
+                    <button onClick={() => setTag1("10")}>art</button>                    
                 </div>
                 <div className="row center-xs">
                     <div className="col-xs-4">
@@ -57,7 +65,7 @@ const Home = (props: { posts: PostType[] }) => {
                                         {parseInt(post.userId) === 2 && "music"}
                                         {parseInt(post.userId) === 3 && "design"}
                                         {parseInt(post.userId) === 4 && "science"}
-                                        {parseInt(post.userId) === 5 && "cultire"}
+                                        {parseInt(post.userId) === 5 && "culture"}
                                         {parseInt(post.userId) === 6 && "history"}
                                         {parseInt(post.userId) === 7 && "coding"}
                                         {parseInt(post.userId) === 8 && "auto"}
