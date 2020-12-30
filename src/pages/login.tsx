@@ -10,22 +10,20 @@ const initialState: User[] = [
     firstName: "Artyom",
     secondName: "N",
     password: "1",
-    type: "admin"
+    type: "user"
   },
   {
     firstName: "Andris",
     secondName: "D",
     password: "1",
-    type: "user"
+    type: "admin"
   }
 ]
 
 const Login: FC = () => {
 
   const [registeredUsers] = useState(initialState)
-  const userState = useSelector<RootState>(state => state.userState)
-  console.log("userState", userState)
-  console.log(registeredUsers)
+  const userState: any = useSelector<RootState>(state => state.userState.user)
 
   const dispatch = useDispatch()
 
@@ -33,10 +31,9 @@ const Login: FC = () => {
     <Form
       onSubmit={value => {
         const registered = [...registeredUsers]
-        const validation = registered.filter(item => item.firstName === value.firstName && item.secondName === value.secondName && item.password === value.password)
+        const validation: User[] = registered.filter(item => item.firstName === value.firstName && item.secondName === value.secondName && item.password === value.password)
         dispatch(validateUser(validation));
-        console.log(1, value);
-        console.log(12, validation);
+        if (validation.length > 0) { alert(`Hello, ${validation[0].firstName}! UR logged in as ${validation[0].type}!`) } else { alert("User not found") }
       }}
     >
       {({ handleSubmit, form, submitting, pristine }) => (
@@ -76,7 +73,7 @@ const Login: FC = () => {
             </Field>
           </div>
           <div className="buttons">
-            <button type="submit" disabled={submitting || pristine}>
+            <button type="submit" disabled={submitting || pristine} >
               Submit
               </button>
             <button

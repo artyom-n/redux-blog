@@ -11,16 +11,14 @@ import { UserState } from './login/types';
 export type RootState = {
   postsState: PostsState,
   commentsState: CommentsState,
-  userState: UserState | any 
-};
+  userState: UserState | any
+}
 
 const reducer = combineReducers <RootState>({
   postsState: postsReducer,
   commentsState: commentsReducer,
   userState: loginReducer,
 });
-
-
 
 export const store = createStore(reducer, composeWithDevTools(
   applyMiddleware(ReduxThunk),
