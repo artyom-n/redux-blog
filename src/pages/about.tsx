@@ -6,7 +6,7 @@ const About = () => {
             <div className="container">
             <div className="row center-xs">
                     <div className="col-xs-6">
-                        <h3 className="about">About</h3>
+                        <h3>About</h3>
                         <div className="about-wrapper">
                             <div className="about-image-wrapper">
                                 <img src="https://picsum.photos/id/8/160/230" 

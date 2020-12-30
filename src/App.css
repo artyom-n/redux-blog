@@ -1,21 +1,22 @@
 body {
-    background-color: rgb(245, 213, 175);
+    background-color: #9FB4C7;     
 }
 
 .logo {
     display: flex;
     justify-content: center;
     margin: 10px 0 0 0;
-    padding: 0
+    padding: 0;
 }
 
 .post-card {    
     border-radius: 16px;
-    border: 1px solid gray;
-    background-color: burlywood;
-    padding: 0px;
+    border: 1px solid rgba(95, 94, 94, 0.596);
+    background-color: #EEEEFF;
+    padding-bottom: 10px;
     margin-top: 5px;
     margin-bottom: 10px;
+    transition: 0.2s;
 }
 
 .post-card__content {
@@ -25,7 +26,10 @@ body {
 }
 
 .about-wrapper {
-    display: flex;    
+    display: flex;   
+    background-color: #EEEEFF;
+    padding: 16px;
+    border-radius: 16px;
 }
 
 .about-image {
@@ -52,9 +56,30 @@ body {
     margin-left: 16px;
 }
 
-.form {
+.post-tag-wrapper {
     display: flex;
     justify-content: center;
+}
+
+.post-tag {
+    background-color: #d1d9e0; 
+    width: 50px;
+    padding: 3px 1px;
+    border: 1px solid rgba(95, 94, 94, 0.596);
+}
+
+.form-wrapper {
+    display: flex;
+    justify-content: center;   
+}
+
+.form {
+    border: 1px solid rgba(95, 94, 94, 0.596);
+    background-color: #EEEEFF;
+    width: 300px;
+    padding: 16px;
+    border-radius: 8px;  
+    max-width: 212px  
 }
 
 .label-input-wrapper {
@@ -65,4 +90,30 @@ body {
 
 .buttons {
     margin-top: 10px
+}
+
+.tag-btn {
+    width: 50px;
+    border: none;
+    padding: 8px 6px;
+    margin: 4px;
+    text-align: center;
+    border-radius: 10px;
+    cursor: pointer;
+    outline: none;
+    transition: 0.2s;   
+    background-color: #EEEEFF;
+    border: 1px solid rgba(95, 94, 94, 0.596); 
+}
+
+.tag-btn:hover {
+    background-color: #d1d9e0
+}
+
+.tags-wrapper {
+    margin-bottom: 10px
+}
+
+.search-input {
+    padding-bottom: 10px
 }

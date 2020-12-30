@@ -29,17 +29,18 @@ const Login: FC = () => {
   const dispatch = useDispatch()
 
   return (
-    <div className="form">
+    <div className="form-wrapper">
+      <div className="form">
       <Form
         onSubmit={value => {
           const registered = [...registeredUsers]
           const validation: User[] = registered.filter(item => item.firstName === value.firstName && item.secondName === value.secondName && item.password === value.password)
           dispatch(validateUser(validation));
-          if (validation.length > 0) { alert(`Hello, ${validation[0].firstName}! UR logged in as ${validation[0].type}!`) } else { alert("User not found") }
+          if (validation.length > 0) { alert(`Welcome, ${validation[0].firstName}! You are logged in as ${validation[0].type}!`) } else { alert("User not found!") }
         }}
       >
         {({ handleSubmit, form, submitting, pristine }) => (
-          <form onSubmit={handleSubmit} className="login-form">
+          <form onSubmit={handleSubmit}>
             <div className="label-input-wrapper">
               <div>
                 <label>First Name</label>
@@ -91,6 +92,7 @@ const Login: FC = () => {
         )}
       </Form >
     </div>
+    </div>    
   );
 };
 
