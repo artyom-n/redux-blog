@@ -11,10 +11,10 @@ import { UserState } from './login/types';
 export type RootState = {
   postsState: PostsState,
   commentsState: CommentsState,
-  userState: UserState
+  userState: UserState | any 
 };
 
-const reducer = combineReducers<RootState>({
+const reducer = combineReducers <RootState>({
   postsState: postsReducer,
   commentsState: commentsReducer,
   userState: loginReducer,

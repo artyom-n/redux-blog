@@ -1,24 +1,23 @@
-export const VALIDATE_USER = 'VALIDATE_USER'
+export const VALIDATED_USER = 'VALIDATED_USER'
 
 export interface UserState {
-  users: User[]
+  user: User[] 
 }
 
 export type ValidateUser = {
-  type: typeof VALIDATE_USER,
-  payload: LoginInfo
-}
-
-export type LoginInfo = {
-  firstName: string,
-  secondName: string,
-  password: string
+  type: typeof VALIDATED_USER,
+  user: User[]
 }
 
 export type User = {
   firstName: string,
   secondName: string,
   password: string,
-  loggedIn: boolean,
   type: string
+}
+
+export type LoginInfo = {
+  firstName: string,
+  secondName: string,
+  password: string
 }

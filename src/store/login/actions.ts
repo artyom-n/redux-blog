@@ -1,8 +1,8 @@
-import { LoginInfo, VALIDATE_USER } from './types'
+import { User, ValidateUser } from './types'
 
-export const validateUser= (user: LoginInfo) => {
+export const validateUser = (user: User[]) => {
   return {
-    type: VALIDATE_USER,
+    type: 'VALIDATED_USER',
     user
   };
 };

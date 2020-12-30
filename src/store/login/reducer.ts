@@ -1,24 +1,17 @@
 
-import { ValidateUser,UserState } from './types';
+import { ValidateUser, UserState } from './types';
 
-const initialState: UserState = {
-  users: [
-    {
-      firstName: "Andris",
-      secondName: "D",
-      password: "1",
-      loggedIn: false,
-      type: "admin"
-    }]
+const theState = {
+  user: []
 }
 
 
-export const loginReducer = (state = initialState, action: ValidateUser) => {
+export const loginReducer = (state = theState, action: ValidateUser): UserState => {
   switch (action.type) {
-    case 'VALIDATE_USER': {
+    case 'VALIDATED_USER': {
       return {
-        ...state, loggedIn: true
-      };
+        user: action.user
+      }
     }
     default:
       return state;
