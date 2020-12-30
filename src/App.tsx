@@ -55,8 +55,7 @@ const App = () => {
     <>
       <section className="logo">
         <img src="https://www.krenerbookkeeping.com/wp-content/uploads/2017/05/blogger-logo-icon-png-22.png" alt="logo" width="50"/>
-      </section>
-      <br />
+      </section>      
       <Router>
         &nbsp; &nbsp; &nbsp; &nbsp;
         <Link to="/">Home</Link>
