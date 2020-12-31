@@ -26,6 +26,8 @@ const Login: FC = () => {
   const [registeredUsers] = useState(initialState)
   const userState: any = useSelector<RootState>(state => state.userState.user)
 
+  console.log('login', userState)
+
   const dispatch = useDispatch()
 
   return (

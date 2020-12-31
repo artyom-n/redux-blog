@@ -1,7 +1,14 @@
 import React from 'react'
 import { Link } from "react-router-dom";
+import { useSelector } from 'react-redux';
+import { RootState } from '../store';
 
 const Navigation = () => {
+
+  const userState: any = useSelector<RootState>(state => state.userState.user)
+
+  console.log('nav', userState)
+
   return (
     <header className="header">
       <div className="container">
@@ -17,7 +24,8 @@ const Navigation = () => {
               <Link className="Link" to="/login">Login</Link>            
           </div>
           <div className="col-xs-3">
-            You are workihg as quest
+            {userState.length === 0 ? "" : `You are logged in as ${userState[0].type}`}
+            
           </div>
         </div>
       </div>
