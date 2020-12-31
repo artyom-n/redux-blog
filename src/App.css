@@ -10,13 +10,18 @@ body {
 }
 
 .post-card {    
-    border-radius: 16px;
-    border: 1px solid rgba(95, 94, 94, 0.596);
+    border-radius: 16px;    
     background-color: #EEEEFF;
-    padding-bottom: 10px;
-    margin-top: 5px;
-    margin-bottom: 10px;
+    padding: 5px;
+    margin: 12px;
     transition: 0.2s;
+    box-shadow:
+    0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+    0 12.5px 10px rgba(0, 0, 0, 0.06),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+    0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+    0 100px 80px rgba(0, 0, 0, 0.12)
 }
 
 .post-card__content {
@@ -30,6 +35,13 @@ body {
     background-color: #EEEEFF;
     padding: 16px;
     border-radius: 16px;
+    box-shadow:
+    0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+    0 12.5px 10px rgba(0, 0, 0, 0.06),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+    0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+    0 100px 80px rgba(0, 0, 0, 0.12)
 }
 
 .about-image {
@@ -63,8 +75,8 @@ body {
 
 .post-tag {
     background-color: #d1d9e0; 
-    width: 50px;
-    padding: 3px 1px;
+    min-width: 50px;
+    padding: 2px 1px;
     border: 1px solid rgba(95, 94, 94, 0.596);
 }
 
@@ -73,13 +85,19 @@ body {
     justify-content: center;   
 }
 
-.form {
-    border: 1px solid rgba(95, 94, 94, 0.596);
+.form {    
     background-color: #EEEEFF;
     width: 300px;
     padding: 16px;
     border-radius: 8px;  
-    max-width: 212px  
+    max-width: 212px;
+    box-shadow:
+    0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+    0 12.5px 10px rgba(0, 0, 0, 0.06),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+    0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+    0 100px 80px rgba(0, 0, 0, 0.12) 
 }
 
 .label-input-wrapper {
@@ -93,7 +111,7 @@ body {
 }
 
 .tag-btn {
-    width: 50px;
+    min-width: 50px;
     border: none;
     padding: 8px 6px;
     margin: 4px;
@@ -102,8 +120,14 @@ body {
     cursor: pointer;
     outline: none;
     transition: 0.2s;   
-    background-color: #EEEEFF;
-    border: 1px solid rgba(95, 94, 94, 0.596); 
+    background-color: #EEEEFF;    
+    box-shadow:
+    0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+    0 12.5px 10px rgba(0, 0, 0, 0.06),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+    0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+    0 100px 80px rgba(0, 0, 0, 0.12)
 }
 
 .tag-btn:hover {
@@ -115,5 +139,5 @@ body {
 }
 
 .search-input {
-    padding-bottom: 10px
+    padding-bottom: 4px
 }
