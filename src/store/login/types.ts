@@ -1,4 +1,5 @@
 export const VALIDATED_USER = 'VALIDATED_USER'
+export const LOGOUT_USER = 'LOGOUT_USER'
 
 export interface UserState {
   user: User[] 
@@ -7,6 +8,10 @@ export interface UserState {
 export type ValidateUser = {
   type: typeof VALIDATED_USER,
   user: User[]
+}
+
+export type LogoutUser = {
+  type: typeof LOGOUT_USER  
 }
 
 export type User = {

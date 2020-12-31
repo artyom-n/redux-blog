@@ -1,13 +1,14 @@
 import React from 'react'
 import { Link } from "react-router-dom";
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch} from 'react-redux';
 import { RootState } from '../store';
+import { logoutUser } from '../store/login/actions';
 
 const Navigation = () => {
 
   const userState: any = useSelector<RootState>(state => state.userState.user)
 
-  console.log('nav', userState)
+  const dispatch = useDispatch()
 
   return (
     <header className="header">
@@ -25,7 +26,10 @@ const Navigation = () => {
           </div>
           <div className="col-xs-3">
             {userState.length === 0 ? "" : `You are logged in as ${userState[0].type}`}
-            
+            {userState.length === 1 && 
+              <button onClick={() => dispatch(logoutUser())} className="add-comment-btn">
+                Log out
+              </button>}
           </div>
         </div>
       </div>
