@@ -46,14 +46,14 @@ const Home = (props: { posts: PostType[] }) => {
                     <div className="col-xs-4">
                         <div className="search-input">
                             <input
-                                className="tag-input"
+                                className="tag-input add-comment-btn"
                                 type="text"
                                 value={tagValue}
                                 onChange={(e) => {
                                     setTagValue(e.target.value)
                                 }}
                             />
-                            <button type="button" onClick={() => {
+                            <button className="add-comment-btn cursor-pointer" onClick={() => {
                                 setTag(tagValue)
                                 setTagValue("")
                             }}>
@@ -65,8 +65,9 @@ const Home = (props: { posts: PostType[] }) => {
                             <Link to={"./posts/" + post.id} className="post-href" key={post.id}>
                                 <div key={post.id} className="post-card">
                                     <h3>{post.title}</h3>
-                                    <div className="post-tag-wrapper">
+                                    <div className="post-tag-wrapper">                                                                                
                                         <div className="post-tag">
+                                            {"Tag: "}
                                             {parseInt(post.userId) === 1 && "sport"}
                                             {parseInt(post.userId) === 2 && "music"}
                                             {parseInt(post.userId) === 3 && "design"}

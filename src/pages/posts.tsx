@@ -92,12 +92,12 @@ const Posts = (props: {
                             </div>
 
                             <div className="add-comment-wrapper">
-                                <input
+                                <input className="add-comment-btn"
                                     type="text"
                                     value={state.preComment}
                                     onChange={onInputChange}
                                 />
-                                <button onClick={onCommentSubmit}>
+                                <button className="add-comment-btn cursor-pointer" onClick={onCommentSubmit}>
                                     Add comment
                                 </button>
                                 {comments.map(comment =>
