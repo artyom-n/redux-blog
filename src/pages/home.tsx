@@ -77,8 +77,7 @@ const Home = (props: { posts: PostType[] }) => {
                                             {parseInt(post.userId) === 7 && "coding"}
                                             {parseInt(post.userId) === 8 && "auto"}
                                             {parseInt(post.userId) === 9 && "news"}
-                                            {parseInt(post.userId) === 10 && "art"}
-                                            {/* {tags.filter(item => item.id === post.userId).map(item => item.tag)} */}
+                                            {parseInt(post.userId) === 10 && "art"}                                            
                                         </div>
                                     </div>                                    
                                 </div>

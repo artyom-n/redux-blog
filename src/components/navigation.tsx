@@ -27,7 +27,7 @@ const Navigation = () => {
           <div className="col-xs-3">
             {userState.length === 0 ? "" : `You are logged in as ${userState[0].type}`}
             {userState.length === 1 && 
-              <button onClick={() => dispatch(logoutUser())} className="add-comment-btn">
+              <button onClick={() => dispatch(logoutUser())} className="add-comment-btn cursor-pointer">
                 Log out
               </button>}
           </div>
