@@ -1,37 +1,59 @@
 import React, { useState } from 'react';
 import { useParams, useHistory, Link } from "react-router-dom";
-import { PostType } from '../store/posts/types';
-import { CommentType } from '../store/comments/types';
+import { PostsState, PostType } from '../store/posts/types';
+import { CommentsState } from '../store/comments/types';
 import '../App.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../store';
+import { setComment } from '../store/comments/actions';
+import { useEffect } from 'react';
 
-interface PostState {
-    post?: PostType;
-    loaded: boolean;
-    preComment: string;
+type State = {
+    loaded: boolean,
+    post: PostType | undefined,
+    preComment: string
 }
 
-const Posts = (props: {
-    posts: PostType[],
-    comments: CommentType[],
-    onAddComment: (postId: number, comment: string) => void,
-}) => {
+const Posts = () => {
+
+    const postsState = useSelector<RootState, PostsState>(state => state.postsState)
+    const commentsState = useSelector<RootState, CommentsState>(state => state.commentsState)
+    const dispatch = useDispatch()
     const history = useHistory();
-    const id = parseInt(useParams<{ id: string }>().id);
 
+    let id = parseInt(useParams<{ id: string }>().id);
 
-    const [state, setState] = useState<PostState>({
-        loaded: props.posts.length > 0,
-        post: props.posts.length > 0 ? props.posts.find(x => x.id === id) : undefined,
-        preComment: ''
-    });
+    const { posts } = postsState
+
+    let initialState = {
+        loaded: posts.length > 0,
+        post: posts.length > 0 ? posts.find(x => x.id === id) : undefined,
+        preComment: ""
+    }
+   
+    const [state, setState] = useState<State>(initialState)
+
+    useEffect(() => {
+        setState(initialState)
+    },[])
 
     const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => setState({
         ...state,
         preComment: e.target.value
     });
 
+    const onAddComment = (postId: number, comment: string) => {
+        const post = commentsState.comments.find(x => x.postId === postId)
+
+        post
+            ?
+            (post.comments = [comment, ...post.comments])
+            :
+            (dispatch(setComment([...commentsState.comments, { postId: postId, comments: [comment] }])))
+    };
+
     const onCommentSubmit = () => {
-        props.onAddComment(id, state.preComment);
+        onAddComment(id, state.preComment);
 
         setState({
             ...state,
@@ -41,11 +63,7 @@ const Posts = (props: {
 
     state.loaded && !state.post && history.push('/404')
 
-    let comments = ['Nice post!'];
-
-    const commentsFromParent = props.comments.find(x => x.postId === id)
-
-    commentsFromParent && (comments = [...commentsFromParent.comments, ...comments])
+    const currentPostComments = [...commentsState.comments.filter(item => item.postId === id).map(item => item.comments)]
 
     return (
         <section>
@@ -72,11 +90,12 @@ const Posts = (props: {
                                 <button className="add-comment-btn cursor-pointer" onClick={onCommentSubmit}>
                                     Add comment
                                 </button>
-                                {comments.map(comment =>
-                                    <p
-                                        key={comment}
+                                {currentPostComments.length === 1 && currentPostComments[0].map((item, i) =>
+                                    <p key={i}
                                         className="post-comment"
-                                    >{"Anonymous: " + comment}</p>
+                                    >
+                                        Anonymous:{item}
+                                    </p>
                                 )}
                             </div>
                         </div>

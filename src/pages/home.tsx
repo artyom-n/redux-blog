@@ -1,28 +1,34 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { PostType } from '../store/posts/types';
+import { PostsState, PostType } from '../store/posts/types';
 import 'flexboxgrid';
 import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from '../store';
 
-const Home = (props: { posts: PostType[] }) => {
+const Home = () => {
+
+    const postsState = useSelector<RootState, PostsState>(state => state.postsState)
 
     const [filteredPosts, setFilteredPosts] = useState<PostType[]>([])
     const [tagValue, setTagValue] = useState("")
     const [tag, setTag] = useState("")
     const [tag1, setTag1] = useState("")
 
+    const { posts } = postsState
+
     useEffect(() => {
-        const allProps = [...props.posts]
-        setFilteredPosts(allProps.filter(item => (item.title).includes(tag)).map(item => item))
+        const allPosts = [...posts]
+        setFilteredPosts(allPosts.filter(item => (item.title).includes(tag)).map(item => item))
     }, [tag])
 
     useEffect(() => {
-        const allProps = [...props.posts]
-        setFilteredPosts(allProps.filter(item => parseInt(item.userId) === parseInt(tag1)).map(item => item))
+        const allPosts = [...posts]
+        setFilteredPosts(allPosts.filter(item => parseInt(item.userId) === parseInt(tag1)).map(item => item))
     }, [tag1])
 
     useEffect(() => {
-        filteredPosts.length < 1 && setFilteredPosts(props.posts)
+        filteredPosts.length < 1 && setFilteredPosts(posts)
     })
 
     return (
@@ -65,7 +71,7 @@ const Home = (props: { posts: PostType[] }) => {
                             <Link to={"./posts/" + post.id} className="post-href" key={post.id}>
                                 <div key={post.id} className="post-card">
                                     <h3>{post.title}</h3>
-                                    <div className="post-tag-wrapper">                                                                                
+                                    <div className="post-tag-wrapper">
                                         <div className="post-tag">
                                             {"Tag: "}
                                             {parseInt(post.userId) === 1 && "sport"}
@@ -77,9 +83,9 @@ const Home = (props: { posts: PostType[] }) => {
                                             {parseInt(post.userId) === 7 && "coding"}
                                             {parseInt(post.userId) === 8 && "auto"}
                                             {parseInt(post.userId) === 9 && "news"}
-                                            {parseInt(post.userId) === 10 && "art"}                                            
+                                            {parseInt(post.userId) === 10 && "art"}
                                         </div>
-                                    </div>                                    
+                                    </div>
                                 </div>
                             </Link>
                         )}
