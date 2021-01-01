@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useParams, useHistory, Link } from "react-router-dom";
-import axios from 'axios';
 import { PostType } from '../store/posts/types';
 import { CommentType } from '../store/comments/types';
 import '../App.css';
@@ -9,10 +8,6 @@ interface PostState {
     post?: PostType;
     loaded: boolean;
     preComment: string;
-}
-
-const getPosts = (): Promise<PostType[]> => {
-    return axios.get("https://jsonplaceholder.typicode.com/posts").then(({ data }) => data)
 }
 
 const Posts = (props: {
@@ -44,35 +39,13 @@ const Posts = (props: {
         });
     }
 
-    const onPostsLoaded = (posts: PostType[]) =>
-        setState({
-            ...state,
-            loaded: true,
-            post: posts.find(x => x.id === id)
-        });
-
-    const loadPosts = () => {
-        getPosts()
-            .then(onPostsLoaded)
-            .catch(console.error);
-    };
-
-    if (!state.loaded) {
-        loadPosts();
-    }
-
-    if (state.loaded && !state.post) {
-        history.push('/404');
-        return (<></>);
-    }
+    state.loaded && !state.post && history.push('/404')
 
     let comments = ['Nice post!'];
 
     const commentsFromParent = props.comments.find(x => x.postId === id)
 
-    if (commentsFromParent) {
-        comments = [...commentsFromParent.comments, ...comments]
-    }
+    commentsFromParent && (comments = [...commentsFromParent.comments, ...comments])
 
     return (
         <section>
@@ -90,7 +63,6 @@ const Posts = (props: {
                                     {state.post!.body}
                                 </p>
                             </div>
-
                             <div className="add-comment-wrapper">
                                 <input className="add-comment-btn"
                                     type="text"
